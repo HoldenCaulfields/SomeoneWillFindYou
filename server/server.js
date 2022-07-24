@@ -12,11 +12,15 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(path.resolve('../'), 'client/index.html'));
 });
 
+app.post('/user', (req,res) => {
+    console.log(req.body);
+});
+
 //get info username, address form the client:
-var info = {
+/* var info = {
     username: '',
     address: '' 
-}
+} */
 
 // app.post('/', (req, res) => {
 //     info.username = req.body.name;

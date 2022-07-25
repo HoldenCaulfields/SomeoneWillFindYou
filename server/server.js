@@ -29,6 +29,12 @@ app.post('/user', (req,res) => {
         
         if (myobj.username != '') {
             if (myobj.username != prevusername) {
+                //filter same username to update, no more same name:
+                datamongo.collection('customers').updateOne(
+                    {username: myobj.username},
+                    {$set: {address: myobj.address, hoppies: myobj.hoppies}}
+                );
+
                 datamongo.collection('customers').insertOne(myobj, (err, res) => {
                     if (err) throw err;
                     console.log('inserted 1 record');
@@ -96,5 +102,5 @@ app.post('/user', (req,res) => {
 // });
 
 
-
-app.listen(3000, ()=> console.log('app running on port 3000'));
+const port = process.env.PORT || 3000;
+app.listen(port, ()=> console.log('app running on port 3000'));

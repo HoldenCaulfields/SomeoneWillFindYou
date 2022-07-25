@@ -1,20 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
 .me {
+    display: inline-block;
+    background-color: rgb(41, 148, 220);
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    width: 20%;
+    position: absolute;
+    top: 5%;
+    left: 2%;
+}
+
+.hoppies {
     display: inline-block;
 }
 
 .canvas {
     display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translate(-40%);
 }
 
 .you {
     display: inline-block;
+    background-color: rgb(36, 66, 176);
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    width: 20%;
+    position: absolute;
+    right: 2%;
+    bottom: 5%;
 }
-
-/* body {
-    background-color: aqua;
-} */
+/* 
+body {
+    background-color: rgb(255, 200, 17);
+}  */
 
 .span {
-    background-color: aqua;
+    background-color: rgb(255, 94, 0);
     padding: 10px 10px 10px 10px;
 }
+
+

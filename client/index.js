@@ -10,14 +10,17 @@ canvas.height = 626;
 ctx.drawImage(img, 0, 0, 556, 626);
 
 //clear background --> to transparent:
-/* for(let i=0; i<560; i++) {
-    for(let j=0; j<630; j++) {
-        if (ctx.getImageData(i,j,1,1).data[1] === 255
-        ) {
-            ctx.clearRect(i,j,1,1);
+/* function cleanbackground () {
+    for(let i=0; i<560; i++) {
+        for(let j=0; j<630; j++) {
+            if (ctx.getImageData(i,j,1,1).data[0] > 245 
+            ) {
+                ctx.clearRect(i,j,1,1);
+            }
         }
     }
 } */
+//cleanbackground();
 
 
 //2. function to change color on map:
@@ -87,14 +90,17 @@ const colorcitys = [
     [190,60]
 ]
 function changecolorcity (city) {
-    ctx.fillStyle = "red";
+    ctx.drawImage(img, 0, 0, 556, 626); //no more cleancolor function
+    //cleanbackground(); //clean background
+
+    ctx.fillStyle = "rgb(255, 94, 0)";
     ctx.beginPath();
     ctx.arc(colorcitys[city][0], colorcitys[city][1], 10, 0, 2 * Math.PI); //fill circle
     ctx.fill();
 }
-function cleancolor(city) {
-    ctx.clearRect(colorcitys[city][0]-10, colorcitys[city][1]-10, 20, 20);
-}
+// function cleancolor(city) {
+//     ctx.clearRect(colorcitys[city][0]-10, colorcitys[city][1]-10, 20, 20);
+// }
 
 
 //3. HANDLE Citys to change colors on MAP:
@@ -112,7 +118,7 @@ window.addEventListener("load", (e) => {
 
 //Handle change colors on map:
 const city = document.getElementById('city');
-let prev = 0;
+//let prev = 0;
 var username = '';
 var address = '';  /////====> get address value ->> post data in .5.
 var searchdata = [];
@@ -121,9 +127,9 @@ city.addEventListener('change', (e) => {
     let cityindex = e.target.value;
     address = citys[cityindex];
     postdata();
-    cleancolor(prev);
+    //cleancolor(prev);
     changecolorcity(cityindex);
-    prev = cityindex;
+    //prev = cityindex;
     
 });
 

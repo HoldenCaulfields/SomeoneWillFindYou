@@ -5,12 +5,12 @@ const path = require('path');
 var prevusername = '';
 
 
-app.use(express.static(path.join(path.resolve('../'), 'client')));
+app.use(express.static('client'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json({limit: '100kb'}));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(path.resolve('../'), 'client/index.html'));
+    res.sendFile(path.join(__dirname, 'client/index.html'));
 });
 
 app.post('/user', (req,res) => {

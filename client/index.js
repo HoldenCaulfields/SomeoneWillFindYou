@@ -144,6 +144,7 @@ searchinput.addEventListener("change", (e) => {
     searchresult.innerHTML += "<span class='span'>"+ e.target.value +"</span>" ;
     searchdata.push(e.target.value); ////====> update data ->>> send to server
     postdata();
+    searchinput.value = '';
 });
 //DELETE: (and update data hoppies)
 searchresult.addEventListener("click", (e) => {
@@ -180,6 +181,7 @@ const inputname = document.getElementById('name');
 inputname.addEventListener('change', (e) => {
     username = e.target.value
     postdata();
+    inputname.style.backgroundColor = "rgb(144, 255, 153,0.8)";
 });
 
 

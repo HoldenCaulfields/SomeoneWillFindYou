@@ -19,15 +19,19 @@
                 <option value="address" selected="selected" disabled>--Address--</option>
             </select> <br />
 
-            <input type="submit" value="OK" id="submit" /> <br />
-
-            <input type="text" name="search" placeholder="type your hoppies:" id="search-input" /> <br/>
-
-            <input type="submit" value="GO" id="submit" />
+            <div class="search-bar">
+                <input type="text" name="search" placeholder="What do you like:" id="search-input" />
+                <i>>></i>
+            </div>
+            
+            
         <!-- </form> -->
     </div>
 
-    <div class="hoppies" id="search-result"></div>
+    <div class="wrap-result">
+        <div class="hoppies" id="search-result"></div>
+    </div>
+    
 
     <div class="canvas">
         <canvas id="canvas"></canvas>
@@ -39,7 +43,7 @@
         <p id="text1"></p>
         <p>second</p>
     </div>
-
+   
     <script src="index.js"></script>
 </body>
 </html>

@@ -1,8 +1,10 @@
 const mongodb = require('mongodb').MongoClient;
+const { json } = require('express');
 const express = require('express');
 const app = express();
 const path = require('path');
 var prevusername = '';
+var someonelikeyou = {data: []};
 
 
 app.use(express.static('client'));
@@ -38,7 +40,7 @@ app.post('/user', (req,res) => {
                 datamongo.collection('customers').insertOne(myobj, (err, res) => {
                     if (err) throw err;
                     console.log('inserted 1 record');
-                    data.close();
+                    //data.close();
                     prevusername = req.body.username;
                 });
             }
@@ -48,11 +50,27 @@ app.post('/user', (req,res) => {
                     {username: myobj.username},
                     {$set: {address: myobj.address, hoppies: myobj.hoppies}}
                 );
-            }
-            
+            } 
         }
+
+        datamongo.collection("customers").find({hoppies: myobj.hoppies}).toArray(function(err, result) {
+            if (err) throw err;
+            someonelikeyou.data = result;
+            //console.log(someonelikeyou);
+            //res.send(myobj);
+            //data.close();
+        });
+
+        //test delete
+        /* datamongo.collection("customers").deleteMany({username: 'thuc'}, function(err, obj) {
+            if (err) throw err;
+            //console.log(obj.result.n + " document(s) deleted");
+            data.close();
+        }); */
+        
     });
     
+    res.send(someonelikeyou.data);
     res.end();
 });
 

@@ -3,6 +3,7 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const img = document.getElementById("img");
+var outputdata = [];
 
 canvas.width = 556;
 canvas.height = 626;
@@ -144,6 +145,7 @@ searchinput.addEventListener("change", (e) => {
     searchresult.innerHTML += "<span class='span'>"+ e.target.value +"</span>" ;
     searchdata.push(e.target.value); ////====> update data ->>> send to server
     postdata();
+    changeoutput(outputdata);
     searchinput.value = '';
 });
 //DELETE: (and update data hoppies)
@@ -174,7 +176,13 @@ function postdata() {
         },
         body: JSON.stringify(data)
     };
-    fetch('/user', options);
+    fetch('/user', options)
+        .then(res => res.json())
+        .then(data => {
+            outputdata = data;
+            
+        })
+        .catch(err => console.error(err));
 }
 //post:
 const inputname = document.getElementById('name');
@@ -183,6 +191,16 @@ inputname.addEventListener('change', (e) => {
     postdata();
     inputname.style.backgroundColor = "rgb(144, 255, 153,0.8)";
 });
+
+//6.OUTPUT: result execute:
+const output = document.getElementById('output');
+
+function changeoutput(data) {
+    data.map( (item, index) => {
+        output.innerHTML += "<div class='user-box'>"+ item.username +"</div>";
+    } );
+}
+
 
 
 
